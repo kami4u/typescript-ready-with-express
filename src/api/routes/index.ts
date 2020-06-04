@@ -1,8 +1,8 @@
 import { Router } from "express";
 const router = Router();
 
-import zones from "./routes/zones";
-import auth from "./routes/auth";
+import zones from "./zones";
+import auth from "./auth";
 
 router.use("/zones", zones);
 router.use("/auth", auth);

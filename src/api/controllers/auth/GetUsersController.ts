@@ -1,4 +1,4 @@
-import BaseController from "../../../BaseController";
+import BaseController from "../BaseController";
 import { IUserRepo } from "../../repos/abstract/IUserRepo";
 
 export class GetUsersController extends BaseController {

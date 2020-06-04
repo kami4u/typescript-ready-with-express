@@ -1,4 +1,4 @@
-import BaseController from "../../../BaseController";
+import BaseController from "../BaseController";
 
 export class GetZoneController extends BaseController {
   constructor() {

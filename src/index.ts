@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import expressWinston from "express-winston";
 
 import logger from "./api/utils/logger";
-import dataStoreApi from "./api/v1/datastore";
+import routes from "./api/routes";
 
 const app = express();
 
@@ -38,7 +38,7 @@ logger.initialise();
 
 app.use(bodyParser.json());
 
-app.use("/api/v1/datastore", dataStoreApi);
+app.use("/api", routes);
 
 // catch-all error handler middleware
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

@@ -1,7 +1,7 @@
 import { Router, Response, Request } from "express";
 const router = Router();
 
-import { asyncRoute } from "../../../utils/async";
+import { asyncRoute } from "../utils/async";
 import { GetZoneController } from "../controllers/zones/GetZoneController";
 
 router.get(
