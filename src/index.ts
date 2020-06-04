@@ -3,9 +3,11 @@ import bodyParser from "body-parser";
 import winston from "winston";
 import mongoose from "mongoose";
 import expressWinston from "express-winston";
+import expressJwt from "express-jwt";
 
 import logger from "./api/utils/logger";
 import routes from "./api/routes";
+import { JsonWebTokenService } from "./api/services/JsonWebTokenService";
 
 const app = express();
 
@@ -38,6 +40,14 @@ logger.initialise();
 
 app.use(bodyParser.json());
 
+app.use(
+  expressJwt({
+    secret: JsonWebTokenService.TOKEN_SECRET,
+  }).unless({
+    path: [/\/api\/auth\/signup/, /\/api\/auth\/login/],
+  })
+);
+
 app.use("/api", routes);
 
 // catch-all error handler middleware
@@ -46,9 +56,8 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   //   res.status(401).send("Invalid token");
   //   return;
   // }
-
   winston.error(`unhandled error: ${err.message}`);
-  res.status(500).end();
+  res.status(500).send(err.message);
 });
 
 const server = app.listen(3000, () => {

@@ -1,5 +1,7 @@
+import bcrypt from "bcrypt";
 import BaseController from "../BaseController";
 import { IUserRepo } from "../../repos/abstract/IUserRepo";
+import { JsonWebTokenService } from "../../services/JsonWebTokenService";
 
 export class AddUserController extends BaseController {
   private userRepo: IUserRepo;
@@ -11,8 +13,9 @@ export class AddUserController extends BaseController {
   protected async executeImpl(): Promise<any> {
     const { email, password } = this.req.body;
 
-    const newUser = await this.userRepo.add({ email, password });
+    const hash = await bcrypt.hash(password, 10);
 
-    return this.ok(newUser);
+    const user = await this.userRepo.add({ email, password: hash });
+    return this.ok();
   }
 }

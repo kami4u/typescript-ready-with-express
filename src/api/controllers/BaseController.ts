@@ -3,16 +3,18 @@
 // contains multiple router handler methods.
 // Based on code in this article:
 // https://khalilstemmler.com/articles/enterprise-typescript-nodejs/clean-consistent-expressjs-controllers/
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 // import { jsonSerialiserReplacer } from "../utils/general";
 
 export default abstract class BaseController {
   protected req: Request;
   protected res: Response;
+  protected next: NextFunction;
 
-  public async execute(req: Request, res: Response): Promise<void | any> {
+  public async execute(req: Request, res: Response, next: NextFunction): Promise<void | any> {
     this.req = req;
     this.res = res;
+    this.next = next;
 
     try {
       await this.executeImpl();
