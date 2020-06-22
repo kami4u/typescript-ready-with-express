@@ -13,7 +13,7 @@ router.post(
 );
 
 router.post(
-  "/login",
+  "/signin",
   asyncRoute(async (req: Request, res: Response, next: NextFunction) =>
     new LoginUserController(new UserRepo(), new JsonWebTokenService()).execute(req, res, next)
   )

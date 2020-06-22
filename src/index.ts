@@ -44,7 +44,7 @@ app.use(
   expressJwt({
     secret: JsonWebTokenService.TOKEN_SECRET,
   }).unless({
-    path: [/\/api\/auth\/signup/, /\/api\/auth\/login/],
+    path: [/\/api\/auth\/signup/, /\/api\/auth\/signin/],
   })
 );
 
