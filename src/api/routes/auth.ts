@@ -9,7 +9,9 @@ const router = Router();
 
 router.post(
   "/signup",
-  asyncRoute(async (req: Request, res: Response, next: NextFunction) => new AddUserController(new UserRepo()).execute(req, res, next))
+  asyncRoute(async (req: Request, res: Response, next: NextFunction) =>
+    new AddUserController(new UserRepo(), new JsonWebTokenService()).execute(req, res, next)
+  )
 );
 
 router.post(
