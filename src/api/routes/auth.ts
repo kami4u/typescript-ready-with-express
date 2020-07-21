@@ -9,21 +9,21 @@ const router = Router();
 
 router.post(
   "/signup",
-  asyncRoute(async (req: Request, res: Response, next: NextFunction) =>
+  asyncRoute((req: Request, res: Response, next: NextFunction) =>
     new AddUserController(new UserRepo(), new JsonWebTokenService()).execute(req, res, next)
   )
 );
 
 router.post(
   "/signin",
-  asyncRoute(async (req: Request, res: Response, next: NextFunction) =>
+  asyncRoute((req: Request, res: Response, next: NextFunction) =>
     new LoginUserController(new UserRepo(), new JsonWebTokenService()).execute(req, res, next)
   )
 );
 
 router.get(
   "/",
-  asyncRoute(async (req: Request, res: Response, next: NextFunction) => new GetUsersController(new UserRepo()).execute(req, res, next))
+  asyncRoute((req: Request, res: Response, next: NextFunction) => new GetUsersController(new UserRepo()).execute(req, res, next))
 );
 
 export default router;

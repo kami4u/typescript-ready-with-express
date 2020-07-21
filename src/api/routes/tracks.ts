@@ -8,12 +8,12 @@ import { TrackRepo } from "../repos/TrackRepo";
 
 router.get(
   "/",
-  asyncRoute(async (req: Request, res: Response, next: NextFunction) => new GetTracksController(new TrackRepo()).execute(req, res, next))
+  asyncRoute((req: Request, res: Response, next: NextFunction) => new GetTracksController(new TrackRepo()).execute(req, res, next))
 );
 
 router.post(
   "/",
-  asyncRoute(async (req: Request, res: Response, next: NextFunction) => new CreateTrackController(new TrackRepo()).execute(req, res, next))
+  asyncRoute((req: Request, res: Response, next: NextFunction) => new CreateTrackController(new TrackRepo()).execute(req, res, next))
 );
 
 export default router;

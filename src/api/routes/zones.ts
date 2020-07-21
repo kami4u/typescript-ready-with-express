@@ -6,7 +6,7 @@ import { GetZoneController } from "../controllers/zones/GetZoneController";
 
 router.get(
   "/",
-  asyncRoute(async (req: Request, res: Response, next: NextFunction) => new GetZoneController().execute(req, res, next))
+  asyncRoute((req: Request, res: Response, next: NextFunction) => new GetZoneController().execute(req, res, next))
 );
 
 export default router;
