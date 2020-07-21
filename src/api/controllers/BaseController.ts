@@ -4,7 +4,6 @@
 // Based on code in this article:
 // https://khalilstemmler.com/articles/enterprise-typescript-nodejs/clean-consistent-expressjs-controllers/
 import { Request, Response, NextFunction } from "express";
-// import { jsonSerialiserReplacer } from "../utils/general";
 
 export default abstract class BaseController {
   protected req: Request;
@@ -32,9 +31,9 @@ export default abstract class BaseController {
 
   protected ok<T>(data?: T) {
     if (data !== undefined) {
-      const jsonData = JSON.stringify(data);
+      // const jsonData = JSON.stringify(data);
 
-      return this.res.status(200).contentType("json").send(jsonData);
+      return this.res.status(200).contentType("json").send(data);
     } else {
       return this.res.sendStatus(200);
     }
